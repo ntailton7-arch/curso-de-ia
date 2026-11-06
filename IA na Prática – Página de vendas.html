@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>IA na Prática – Do zero ao uso profissional</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700;800&family=Source+Serif+4:wght@400;600&display=swap">
+<style>
+:root{--bg:#f3f4f9;--surface:#fff;--ink:#16163a;--muted:#55587a;--blue:#2f4bff;--hl:#ffd84d;--hl-ink:#2a2200;--line:#d9dcee;--dark:#16163a;--dark-ink:#f4f5ff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1026;--surface:#181a3a;--ink:#eef0ff;--muted:#a3a8d0;--blue:#7d8fff;--line:#2a2d5a;--dark:#0a0b1c;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f1026;--surface:#181a3a;--ink:#eef0ff;--muted:#a3a8d0;--blue:#7d8fff;--line:#2a2d5a;--dark:#0a0b1c;color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.08rem/1.7 "Source Serif 4",Georgia,serif}
+h1,h2,h3{font-family:Sora,system-ui,sans-serif;line-height:1.15;margin:0 0 .6em}
+.wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+.hero{padding:64px 0 72px}
+.hero .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:44px;align-items:center}
+.hero h1{font-size:clamp(2.3rem,5.6vw,4rem);font-weight:800;letter-spacing:-.025em}
+.hero h1 mark{background:linear-gradient(transparent 58%,var(--hl) 58%);color:inherit;padding:0 .1em}
+.sub{font-size:1.2rem;color:var(--muted);max-width:36ch}
+.btn{display:inline-block;background:var(--blue);color:#fff;font:700 1.08rem Sora,system-ui,sans-serif;padding:16px 28px;border-radius:12px;text-decoration:none;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn:focus-visible,a:focus-visible{outline:3px solid var(--hl);outline-offset:3px}
+.btn.alt{background:var(--hl);color:var(--hl-ink)}
+.note{font-size:.9rem;color:var(--muted);margin-top:14px}
+.demo{background:var(--dark);color:var(--dark-ink);border-radius:14px;padding:22px;box-shadow:0 22px 50px rgba(22,22,58,.28);font:500 .95rem/1.55 Sora,system-ui,sans-serif}
+.demo .tag{display:inline-block;font-size:.78rem;font-weight:700;padding:3px 10px;border-radius:99px;margin-bottom:8px}
+.bad .tag{background:#5a2a3a;color:#ffc9d6}.good .tag{background:var(--hl);color:var(--hl-ink)}
+.demo p{margin:0 0 18px;font-family:"Source Serif 4",Georgia,serif;font-size:1rem}
+.bad p{opacity:.7}
+.good p{margin:0}
+.good b{color:var(--hl)}
+section{padding:64px 0}
+h2{font-size:clamp(1.7rem,4vw,2.5rem);font-weight:700}
+.lead{max-width:62ch;color:var(--muted)}
+.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));margin-top:28px}
+.item{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:22px}
+.item h3{font-size:1.1rem;margin-bottom:.4em}
+.item p{margin:0;color:var(--muted);font-size:1rem;line-height:1.6}
+.band{background:var(--surface);border-block:1px solid var(--line)}
+.steps{display:grid;gap:12px;margin:26px 0 0;padding:0;list-style:none;max-width:780px;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.steps li::before{content:counter(s);font:800 1.1rem Sora,sans-serif;background:var(--hl);color:var(--hl-ink);width:38px;height:38px;border-radius:50%;display:grid;place-items:center}
+.steps b{font-family:Sora,sans-serif}
+.tools{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;padding:0;list-style:none}
+.tools li{background:var(--surface);border:1px solid var(--line);border-radius:99px;padding:6px 16px;font:600 .95rem Sora,sans-serif}
+.buy{background:var(--dark);color:var(--dark-ink);text-align:center}
+.price{font:800 clamp(3rem,9vw,5rem)/1 Sora,sans-serif;margin:10px 0 6px;color:var(--hl)}
+.buy p{max-width:50ch;margin:0 auto 24px;opacity:.88}
+.buy .note{color:var(--dark-ink);opacity:.75}
+details{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 20px;margin-top:12px;max-width:780px}
+summary{cursor:pointer;font:700 1.02rem Sora,sans-serif}
+details p{margin:.7em 0 0;color:var(--muted)}
+footer{padding:34px 0 48px;text-align:center;color:var(--muted);font-size:.9rem}
+@media (max-width:780px){.hero .wrap{grid-template-columns:1fr}section{padding:46px 0}.hero{padding:44px 0 52px}}
+@media (prefers-reduced-motion:reduce){.btn{transition:none}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+<div>
+<h1>Aprenda a usar <mark>Inteligência Artificial</mark> de verdade, do zero ao profissional.</h1>
+<p class="sub">O curso completo em e-book para usar IA no trabalho, nos estudos e nos negócios. Sem saber programar.</p>
+<a class="btn" href="#comprar">Quero começar agora</a>
+<div class="note">Acesso imediato · Pagamento único</div>
+</div>
+<div class="demo" aria-label="Exemplo de prompt fraco e prompt forte">
+<div class="bad"><span class="tag">Prompt fraco</span><p>“Escreva um e-mail.”</p></div>
+<div class="good"><span class="tag">Prompt forte</span><p>“<b>Você é</b> assistente de uma clínica odontológica. <b>Escreva</b> um e-mail curto para pacientes que faltaram, oferecendo reagendamento esta semana. <b>Tom</b> acolhedor, até 100 palavras.”</p></div>
+</div>
+</div></header>
+
+<section class="band"><div class="wrap">
+<h2>A IA já escreve, resume, cria e analisa. Quem sabe pedir sai na frente.</h2>
+<p class="lead">A qualidade da resposta depende da qualidade do pedido. Este curso ensina como pensar, pedir e conferir, princípios que continuam valendo mesmo quando as ferramentas mudam.</p>
+<div class="grid">
+<div class="item"><h3>Prompts que funcionam</h3><p>O método PCTF (Papel, Contexto, Tarefa e Formato) com exemplos de antes e depois.</p></div>
+<div class="item"><h3>IA na rotina</h3><p>Estudos, e-mails, planilhas, relatórios, atendimento e planejamento, com exercícios reais.</p></div>
+<div class="item"><h3>Criação com IA</h3><p>Imagens, textos, apresentações, áudio e vídeo, com dicas para evitar erros comuns.</p></div>
+<div class="item"><h3>Automação e agentes</h3><p>Como tirar tarefas repetitivas do caminho, mantendo sempre uma revisão humana.</p></div>
+<div class="item"><h3>Uso seguro</h3><p>Alucinações, privacidade, LGPD, direitos autorais, vieses e golpes com deepfake.</p></div>
+<div class="item"><h3>IA que gera renda</h3><p>Caminhos para crescer na carreira, prestar serviços, criar produtos digitais ou ensinar.</p></div>
+</div>
+</div></section>
+
+<section><div class="wrap">
+<h2>Um curso, não só um texto</h2>
+<p class="lead">Cada capítulo explica um conceito, mostra exemplos e termina com um exercício prático. Você aprende fazendo, com uma ferramenta de IA aberta ao lado.</p>
+<ol class="steps">
+<li><div><b>O que é IA e como funciona</b><br>Definições simples, tipos de IA, mitos comuns e os conceitos essenciais.</div></li>
+<li><div><b>As principais ferramentas</b><br>Chat, pesquisa, imagem, áudio, vídeo, produtividade e programação, e como escolher.</div></li>
+<li><div><b>Prompts, rotina e criação</b><br>Do método PCTF até produzir conteúdo completo com texto e imagem.</div></li>
+<li><div><b>Automação, segurança e renda</b><br>Fluxos automáticos, checklist de verificação e como montar sua oferta.</div></li>
+<li><div><b>Plano de 30 dias</b><br>Roteiro dia a dia para sair da teoria e aplicar profissionalmente.</div></li>
+</ol>
+<ul class="tools" aria-label="Categorias de ferramentas abordadas">
+<li>Assistentes de chat</li><li>Pesquisa com fontes</li><li>Imagem</li><li>Áudio e vídeo</li><li>Produtividade</li><li>Automação</li>
+</ul>
+</div></section>
+
+<section class="band"><div class="wrap">
+<h2>Bônus incluídos</h2>
+<div class="grid">
+<div class="item"><h3>20 prompts prontos</h3><p>Resumo, e-mail, ata, roteiro, proposta comercial, planilha, simulação de entrevista e muito mais. É só trocar o que está entre colchetes.</p></div>
+<div class="item"><h3>Glossário rápido</h3><p>LLM, token, alucinação, agente, API, deepfake e outros termos explicados em uma linha.</p></div>
+<div class="item"><h3>Checklist de uso responsável</h3><p>Cinco perguntas para fazer antes de usar qualquer resultado gerado por IA.</p></div>
+</div>
+</div></section>
+
+<section><div class="wrap">
+<h2>Para quem é</h2>
+<p class="lead">Para estudantes, profissionais, empreendedores e qualquer pessoa que queira usar IA com segurança e resultado, mesmo sem experiência em tecnologia. Se você quer fazer mais, em menos tempo e com mais qualidade, comece por aqui.</p>
+</div></section>
+
+<section class="buy" id="comprar"><div class="wrap">
+<h2>Comece hoje a dominar a IA</h2>
+<div class="price">R$ 19,99</div>
+<p>Pagamento único, sem mensalidade. Você recebe o e-book completo com exercícios, plano de 30 dias e todos os bônus.</p>
+<a class="btn alt" href="https://wa.me/5583998022244?text=Ol%C3%A1!%20Quero%20comprar%20o%20e-book%20%E2%80%9CIA%20na%20Pr%C3%A1tica%E2%80%9D." target="_blank" rel="noopener">Comprar agora</a>
+<div class="note">Atendimento e envio pelo WhatsApp</div>
+</div></section>
+
+<section><div class="wrap">
+<h2>Perguntas frequentes</h2>
+<details><summary>Preciso saber programar?</summary><p>Não. Hoje você conversa com a IA em português, como com um assistente.</p></details>
+<details><summary>As ferramentas citadas vão ficar ultrapassadas?</summary><p>Os nomes e recursos podem mudar, mas o curso ensina princípios (como pensar, pedir e conferir) que continuam valendo.</p></details>
+<details><summary>Preciso pagar por alguma ferramenta?</summary><p>Não para começar. O curso orienta a testar ferramentas com versão gratuita.</p></details>
+<details><summary>Como recebo o material?</summary><p>Depois da compra, você recebe o arquivo para ler no celular, tablet ou computador.</p></details>
+<details><summary>Tenho dúvidas antes de comprar.</summary><p>Fale direto com o autor pelo WhatsApp: (83) 99802-2244.</p></details>
+</div></section>
+
+<footer><div class="wrap">© 2026 Ailton Neto. Todos os direitos reservados.<br>Material educativo. Ferramentas, recursos e preços podem mudar com o tempo.<br>Dúvidas: WhatsApp (83) 99802-2244</div></footer>
+</body>
+</html>
